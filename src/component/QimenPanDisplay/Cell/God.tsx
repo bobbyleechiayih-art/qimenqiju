@@ -3,6 +3,7 @@ import {八神} from "@/qimen/type";
 import {Flex} from "@chakra-ui/react";
 import {ColorUtil} from "@/qimen/ColorUtil";
 import {ScoreModeUtil} from "@/util/ScoreModeUtil";
+import {PinyinTranslationMap} from "@/qimen/dictionary";
 
 interface Props {
     panSize: number;
@@ -23,7 +24,14 @@ export const God = React.memo<Props>(({panSize, value, isScoreMode, highlight}) 
             borderRadius={{base: "md", md: "xl"}}
             width={panSize / 8}
         >
-            {value || "　"}
+            <Flex direction="column" align="center" justify="center" lineHeight="1">
+                <span style={{ fontWeight: "bold" }}>{value || "　"}</span>
+                {value && (
+                    <span style={{ fontSize: "0.6em", opacity: 0.6, fontWeight: "normal", marginTop: "4px" }}>
+                        {PinyinTranslationMap[value]}
+                    </span>
+                )}
+            </Flex>
         </Flex>
     );
 });
