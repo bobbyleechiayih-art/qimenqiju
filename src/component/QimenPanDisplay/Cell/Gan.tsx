@@ -3,6 +3,7 @@ import React from "react";
 import {天干} from "@/qimen/type";
 import {ColorUtil} from "@/qimen/ColorUtil";
 import {ScoreModeUtil} from "@/util/ScoreModeUtil";
+import {PinyinTranslationMap} from "@/qimen/dictionary";
 
 interface Props {
     value?: 天干;
@@ -26,7 +27,14 @@ export const Gan = React.memo<Props>(({panSize, value, highlight, isScoreMode, t
             color={isScoreMode && value ? scoreColor(value) : value ? ColorUtil.天干(value) : undefined}
         >
             <Tooltip hasArrow label={tooltip} aria-label={tooltip}>
-                {value || "　"}
+                <Flex direction="column" align="center" justify="center" lineHeight="1">
+                    <span style={{ fontWeight: "bold" }}>{value || "　"}</span>
+                    {value && (
+                        <span style={{ fontSize: "0.6em", opacity: 0.6, fontWeight: "normal", marginTop: "4px" }}>
+                            {PinyinTranslationMap[value]}
+                        </span>
+                    )}
+                </Flex>
             </Tooltip>
         </Flex>
     );
