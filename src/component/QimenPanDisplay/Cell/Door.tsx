@@ -26,14 +26,14 @@ export const Door = React.memo<Props>(({panSize, value, isScoreMode, highlight, 
             width={panSize / 8}
         >
             <Tooltip hasArrow label={tooltip} aria-label={tooltip}>
-                <Flex align="center" gap={1}>
-                    <span style={{ fontWeight: "bold" }}>{value || "　"}</span>
-                    {value && (
-                        <span style={{ fontSize: "0.6em", opacity: 0.6, fontWeight: "normal" }}>
-                            {PinyinTranslationMap[value]}
-                        </span>
-                    )}
-                </Flex>
+                <Flex direction="column" align="center" justify="center" lineHeight="1">
+    <span style={{ fontWeight: "bold" }}>{value || "　"}</span>
+    {value && (
+        <span style={{ fontSize: "0.6em", opacity: 0.6, fontWeight: "normal", marginTop: "4px" }}>
+            {PinyinTranslationMap[value]}
+        </span>
+    )}
+</Flex>
             </Tooltip>
         </Flex>
     );
