@@ -225,6 +225,11 @@ const create = (lunar: Lunar): QimenPan => {
     // 驛馬
     const horse = 驛馬(hourZhi);
 
+    // --- NEW CODE: Split System Parasite Variables ---
+    const 寄宮星 = yinOrYangDun === "陽遁" ? "天任" : "天芮";
+    const 寄宮地盤索引 = yinOrYangDun === "陽遁" ? 7 : 1; 
+    // --------------------------------------------------
+    
     return {
         lunar,
         八字: [yearStem, monthStem, dayStem, hourStem],
@@ -248,8 +253,12 @@ const create = (lunar: Lunar): QimenPan => {
                     八神: eightGods[index],
                     九星: nineStars[index],
                     八門: eightDoors[index],
-                    天盤干: index === nineStars.indexOf("天芮") ? [skyGans[index], earthGans[4]] : skyGans[index] ? [skyGans[index]] : [],
-                    地盤干: index === 1 ? [earthGans[index], earthGans[4]] : [earthGans[index]],
+                    // --- OLD CODE (Commented out for safekeeping) ---
+                    //天盤干: index === nineStars.indexOf("天芮") ? [skyGans[index], earthGans[4]] : skyGans[index] ? [skyGans[index]] : [],
+                    //地盤干: index === 1 ? [earthGans[index], earthGans[4]] : [earthGans[index]],
+                    // --- NEW CODE (Active Split System) ---
+                    天盤干: index === nineStars.indexOf(寄宮星) ? [skyGans[index], earthGans[4]] : skyGans[index] ? [skyGans[index]] : [],
+                    地盤干: index === 寄宮地盤索引 ? [earthGans[index], earthGans[4]] : [earthGans[index]],
                     宮位: 宮位飛星序[index],
                     是否空亡: voidZhis.some(_ => 宮位地支(宮位飛星序[index]).includes(_)),
                     是否驛馬: 宮位地支(宮位飛星序[index]).includes(horse),
