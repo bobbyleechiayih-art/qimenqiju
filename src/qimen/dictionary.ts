@@ -122,3 +122,50 @@ export const 宮位地支表: Record<宮位, 地支[]> = {
     艮八宮: ["丑", "寅"],
     離九宮: ["午"],
 };
+
+
+// --- Display Translation Map ---
+// Use this purely for UI display, keeping the core algorithms intact.
+export const PinyinTranslationMap: Record<string, string> = {
+    // 天干 (Heavenly Stems)
+    "甲": "Jia",
+    "乙": "Yi",
+    "丙": "Bing",
+    "丁": "Ding",
+    "戊": "Wu",
+    "己": "Ji",
+    "庚": "Geng",
+    "辛": "Xin",
+    "壬": "Ren",
+    "癸": "Gui",
+
+    // 八門 (8 Doors)
+    "休門": "Xiu",
+    "生門": "Sheng",
+    "傷門": "Shang",
+    "杜門": "Du",
+    "景門": "Jing", 
+    "死門": "Si",
+    "驚門": "Jing", 
+    "開門": "Kai",
+
+    // 九星 (9 Stars)
+    "天蓬": "Tian Peng",
+    "天任": "Tian Ren",
+    "天冲": "Tian Chong",
+    "天輔": "Tian Fu",
+    "天英": "Tian Ying",
+    "天芮": "Tian Rui",
+    "天柱": "Tian Zhu",
+    "天心": "Tian Xin",
+
+    // 八神 (8 Deities)
+    "值符": "Zhi Fu",
+    "騰蛇": "Teng She",
+    "太陰": "Tai Yin",
+    "六合": "Liu He",
+    "白虎": "Bai Hu",
+    "玄武": "Xuan Wu",
+    "九地": "Jiu Di",
+    "九天": "Jiu Tian"
+};
