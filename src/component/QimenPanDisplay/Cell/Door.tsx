@@ -3,6 +3,7 @@ import {Flex, Tooltip} from "@chakra-ui/react";
 import {八門} from "@/qimen/type";
 import {ColorUtil} from "@/qimen/ColorUtil";
 import {ScoreModeUtil} from "@/util/ScoreModeUtil";
+import {PinyinTranslationMap} from "@/qimen/dictionary";
 
 interface Props {
     panSize: number;
@@ -25,12 +26,20 @@ export const Door = React.memo<Props>(({panSize, value, isScoreMode, highlight, 
             width={panSize / 8}
         >
             <Tooltip hasArrow label={tooltip} aria-label={tooltip}>
-                {value || "　"}
+                <Flex align="center" gap={1}>
+                    <span style={{ fontWeight: "bold" }}>{value || "　"}</span>
+                    {value && (
+                        <span style={{ fontSize: "0.6em", opacity: 0.6, fontWeight: "normal" }}>
+                            {PinyinTranslationMap[value]}
+                        </span>
+                    )}
+                </Flex>
             </Tooltip>
         </Flex>
     );
 });
 
+// Original colors retained!
 const scoreColor = (value: 八門) => {
     switch (ScoreModeUtil.doorScore(value)) {
         case "吉":
