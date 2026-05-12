@@ -1,8 +1,9 @@
 import React from "react";
-import {Text, Tooltip} from "@chakra-ui/react";
+import {Flex, Tooltip} from "@chakra-ui/react";
 import {ColorUtil} from "@/qimen/ColorUtil";
 import {九星} from "@/qimen/type";
 import {ScoreModeUtil} from "@/util/ScoreModeUtil";
+import {PinyinTranslationMap} from "@/qimen/dictionary";
 
 interface Props {
     panSize: number;
@@ -13,11 +14,23 @@ interface Props {
 
 export const Star = React.memo<Props>(({panSize, value, isScoreMode, tooltip}) => {
     return (
-        <Text cursor="pointer" fontSize={`${panSize / 20}px`} color={isScoreMode ? scoreColor(value) : ColorUtil.九星(value)}>
+        <Flex 
+            cursor="pointer" 
+            justifyContent="center" 
+            fontSize={`${panSize / 20}px`} 
+            color={isScoreMode ? scoreColor(value) : ColorUtil.九星(value)}
+        >
             <Tooltip hasArrow label={tooltip} aria-label={tooltip}>
-                {value || "　"}
+                <Flex direction="column" align="center" justify="center" lineHeight="1">
+                    <span style={{ fontWeight: "bold" }}>{value || "　"}</span>
+                    {value && (
+                        <span style={{ fontSize: "0.6em", opacity: 0.6, fontWeight: "normal", marginTop: "4px" }}>
+                            {PinyinTranslationMap[value]}
+                        </span>
+                    )}
+                </Flex>
             </Tooltip>
-        </Text>
+        </Flex>
     );
 });
 
