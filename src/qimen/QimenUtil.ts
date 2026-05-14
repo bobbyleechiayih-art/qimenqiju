@@ -214,7 +214,7 @@ const create = (lunar: Lunar): QimenPan => {
     const yinOrYangDun = 陰遁或陽遁(solarTermName);
     // --- OLD CODE ---
     //const upperMiddleLowerSector = 上中下元(dayStem);
-    / --- NEW CODE ---
+    // --- NEW CODE ---
     const upperMiddleLowerSector = 上中下元(lunar, solarTerm);
     // ----------------
     const inning = 局數(solarTermName, upperMiddleLowerSector);
