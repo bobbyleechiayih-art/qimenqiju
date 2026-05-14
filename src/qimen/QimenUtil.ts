@@ -36,10 +36,33 @@ const 陰遁或陽遁 = (節氣: 節氣): 遁 => {
     return Object.keys(節氣遁表)[index] as 遁;
 };
 
+/* =========================================================
+   OLD CODE (Chai Bu Fa / 拆補法) KEPT FOR REFERENCE
+   =========================================================
 const 上中下元 = (日干支: 六十甲子): 上中下元 => {
     const index = Object.values(上中下元表).findIndex(上中下元 => 上中下元.includes(日干支));
     return Object.keys(上中下元表)[index] as 上中下元;
 };
+========================================================= */
+
+// --- NEW CODE (Mao Shan Pai / 茅山派) ---
+const 上中下元 = (lunar: Lunar, 節氣對象: any): 上中下元 => {
+    // Get exact time of the user's selected date
+    const targetDate = lunar.getSolar().getCalendar();
+    
+    // Get exact time the Solar Term started
+    const jieQiDate = 節氣對象.getSolar().getCalendar();
+
+    // Calculate elapsed time in days
+    const diffMs = targetDate.getTime() - jieQiDate.getTime();
+    const daysPassed = diffMs / (1000 * 60 * 60 * 24);
+
+    // Mao Shan Pai strict allocation: 5 days per cycle
+    if (daysPassed < 5) return "上元";
+    if (daysPassed < 10) return "中元";
+    return "下元"; 
+};
+// ----------------------------------------
 
 const 局數 = (節氣: 節氣, 上中下元: 上中下元): 局數 => {
     const index = Object.keys(局數表).findIndex(_ => _ === 節氣);
@@ -189,7 +212,11 @@ const create = (lunar: Lunar): QimenPan => {
     const solarTermName = solarTerm.getName() as 節氣;
 
     const yinOrYangDun = 陰遁或陽遁(solarTermName);
-    const upperMiddleLowerSector = 上中下元(dayStem);
+    // --- OLD CODE ---
+    //const upperMiddleLowerSector = 上中下元(dayStem);
+    / --- NEW CODE ---
+    const upperMiddleLowerSector = 上中下元(lunar, solarTerm);
+    // ----------------
     const inning = 局數(solarTermName, upperMiddleLowerSector);
 
     const daysHead = 旬首(hourStem);
