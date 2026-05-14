@@ -10,6 +10,11 @@ interface Props {
 }
 
 export const Pattern = React.memo<Props>(({panSize, g1, g2}) => {
+    // 👇 ADD THIS LINE: This tells React to render nothing!
+    return null; 
+
+    // 👇 Comment out the rest of the original code just in case you want it back later
+    /*
     const [patternName, type, description] = QmPatternUtil.pattern(g1, g2);
 
     return (
@@ -19,6 +24,7 @@ export const Pattern = React.memo<Props>(({panSize, g1, g2}) => {
             </Tooltip>
         </Flex>
     );
+    */
 });
 
 const color = (type: BehaviorType) => {
