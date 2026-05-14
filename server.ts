@@ -1,3 +1,5 @@
+process.env.TZ = 'Asia/Kuala_Lumpur';
+
 import express, { Request, Response } from 'express';
 import { QimenUtil } from './src/qimen/QimenUtil';
 import { Lunar } from 'lunar-typescript';
