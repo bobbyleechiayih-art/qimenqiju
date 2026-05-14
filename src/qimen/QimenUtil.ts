@@ -61,6 +61,7 @@ const 上中下元 = (lunar: Lunar, 節氣對象: any): 上中下元 => {
     if (daysPassed < 5) return "上元";
     if (daysPassed < 10) return "中元";
     return "下元";
+};
 /*const 上中下元 = (lunar: Lunar, 節氣對象: any): 上中下元 => {
     // Get exact time of the user's selected date
     const targetDate = lunar.getSolar().getCalendar();
