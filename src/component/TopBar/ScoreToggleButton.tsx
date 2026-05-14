@@ -1,4 +1,21 @@
 import React from "react";
+
+// We keep the Props interface active so the parent component doesn't break
+interface Props {
+    enabled: boolean;
+    setEnabled: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+// We remove the {enabled, setEnabled} destructuring so TypeScript doesn't complain
+export const ScoreToggleButton = React.memo<Props>(() => {
+    return null; 
+});
+
+/* =========================================================
+   OLD CODE KEPT FOR FUTURE REFERENCE
+   To restore this, delete the top part and uncomment everything below!
+   =========================================================
+import React from "react";
 import {StarIcon} from "@chakra-ui/icons";
 import {Button, Text, useBreakpointValue} from "@chakra-ui/react";
 
@@ -28,3 +45,4 @@ export const ScoreToggleButton = React.memo<Props>(({enabled, setEnabled}) => {
         </Button>
     );
 });
+========================================================= */
