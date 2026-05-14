@@ -1,3 +1,4 @@
+import React from "react";
 // We keep the Props interface active so the parent component doesn't break
 interface Props {
     enabled: boolean;
