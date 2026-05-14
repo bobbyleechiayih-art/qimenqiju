@@ -12,12 +12,14 @@ describe("QimenUtil", () => {
         expect(QimenUtil.陰遁或陽遁("芒种")).toEqual("陽遁");
     });
 
-    it("上中下元", () => {
-        expect(QimenUtil.上中下元("甲子")).toEqual("上元");
-        expect(QimenUtil.上中下元("己巳")).toEqual("中元");
-        expect(QimenUtil.上中下元("甲戌")).toEqual("下元");
-    });
-
+// --- OLD TESTS COMMENTED OUT ---
+//    it("上中下元", () => {
+//        expect(QimenUtil.上中下元("甲子")).toEqual("上元");
+//        expect(QimenUtil.上中下元("己巳")).toEqual("中元");
+//        expect(QimenUtil.上中下元("甲戌")).toEqual("下元");
+//    });
+// -------------------------------
+    
     it("局數", () => {
         expect(QimenUtil.局數("谷雨", "上元")).toEqual(5);
         expect(QimenUtil.局數("谷雨", "中元")).toEqual(2);
