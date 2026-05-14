@@ -1,4 +1,21 @@
 import React from "react";
+import {神煞} from "@/util/AngelDevilUtil";
+
+// We keep the Props interface active so the parent component doesn't break
+interface Props {
+    items: (神煞 | "貴人")[];
+}
+
+// We remove the {items} destructuring so TypeScript doesn't complain it's unused
+export const GodDevilRenderer = React.memo<Props>(() => {
+    return null; 
+});
+
+/* =========================================================
+   OLD CODE KEPT FOR FUTURE REFERENCE
+   To restore this, delete the top part and uncomment everything below!
+   =========================================================
+import React from "react";
 import {Flex} from "@chakra-ui/react";
 import {AngelDevilUtil, 神煞} from "@/util/AngelDevilUtil";
 
@@ -26,3 +43,4 @@ export const GodDevilRenderer = React.memo<Props>(({items}) => {
         </React.Fragment>
     );
 });
+========================================================= */
