@@ -1,4 +1,21 @@
 import React from "react";
+import {八字} from "@/qimen/type"; // Only keeping what the interface needs
+
+// We keep the Props interface active so the parent component doesn't break
+interface Props {
+    bazi: 八字;
+}
+
+// We remove the {bazi} destructuring so TypeScript doesn't complain it's unused
+export const TimeTypeDisplay = React.memo<Props>(() => {
+    return null; 
+});
+
+/* =========================================================
+   OLD CODE KEPT FOR FUTURE REFERENCE
+   To restore this, delete the top part and uncomment everything below!
+   =========================================================
+import React from "react";
 import {Flex} from "@chakra-ui/react";
 import {AstrologicalTimeUtil, TimeType} from "@/qimen/AstrologicalTimeUtil";
 import {八字, 地支, 天干} from "@/qimen/type";
@@ -44,3 +61,4 @@ const color = (type: TimeType) => {
             return null;
     }
 };
+========================================================= */
