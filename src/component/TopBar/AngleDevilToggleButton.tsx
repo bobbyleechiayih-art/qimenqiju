@@ -1,3 +1,18 @@
+// We keep the Props interface active so the parent component doesn't break
+interface Props {
+    enabled: boolean;
+    setEnabled: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+// We remove the {enabled, setEnabled} destructuring so TypeScript doesn't complain
+export const AngleDevilToggleButton = React.memo<Props>(() => {
+    return null; 
+});
+
+/* =========================================================
+   OLD CODE KEPT FOR FUTURE REFERENCE
+   To restore this, delete the top part and uncomment everything below!
+   =========================================================
 import React from "react";
 import {Button, Text, useBreakpointValue} from "@chakra-ui/react";
 import {MoonIcon} from "@chakra-ui/icons";
@@ -28,3 +43,4 @@ export const AngleDevilToggleButton = React.memo<Props>(({enabled, setEnabled}) 
         </Button>
     );
 });
+========================================================= */
