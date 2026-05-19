@@ -24,7 +24,7 @@ export const Star = React.memo<Props>(({panSize, value, isScoreMode, tooltip}) =
                 <Flex direction="column" align="center" justify="center" lineHeight="1">
                     <span style={{ fontWeight: "bold" }}>{value || "　"}</span>
                     {value && (
-                        <span style={{ fontSize: "0.6em", opacity: 0.6, fontWeight: "normal", marginTop: "4px" }}>
+                        <span style={{ fontSize: "0.4em", opacity: 0.6, fontWeight: "normal", marginTop: "2px" }}>
                             {PinyinTranslationMap[value]}
                         </span>
                     )}
