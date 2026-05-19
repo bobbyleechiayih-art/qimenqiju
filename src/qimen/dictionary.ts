@@ -140,14 +140,14 @@ export const PinyinTranslationMap: Record<string, string> = {
     "癸": "Gui",
 
     // 八門 (8 Doors)
-    "休門": "Xiu",
-    "生門": "Sheng",
-    "傷門": "Shang",
-    "杜門": "Du",
-    "景門": "Jing", 
-    "死門": "Si",
-    "驚門": "Jing", 
-    "開門": "Kai",
+    "休門": "Xiu Men",
+    "生門": "Sheng Men",
+    "傷門": "Shang Men",
+    "杜門": "Du Men",
+    "景門": "Jing Men", 
+    "死門": "Si Men",
+    "驚門": "Jing Men", 
+    "開門": "Kai Men",
 
     // 九星 (9 Stars)
     "天蓬": "Tian Peng",
