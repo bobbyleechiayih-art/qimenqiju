@@ -8,18 +8,18 @@ import path from 'path';
 const app = express();
 const port = process.env.PORT || 3000;
 
-// 1. The API Route (For your n8n AI Agent)
+// 1. The API Route (EXCLUSIVELY for your n8n AI Agent)
 app.get('/api/extract-qiju', (req: Request, res: Response) => {
     const timeParam = req.query.time as string;
     const date = timeParam ? new Date(timeParam) : new Date();
     
-    const qimenPan = QimenUtil.create(Lunar.fromDate(date));
+    const lunar = Lunar.fromDate(date);
+    const qimenPan = QimenUtil.create(lunar);
 
-    // Map to your specific requested structure
+    // Map the 9 palaces with your custom Pinyin corrections
     const extraction = qimenPan.九宮.map(cell => {
         let doorDisplay: string = cell.八門 || "";
         
-        // Apply your specific correction ledger rule
         if (doorDisplay === "景門") doorDisplay = "Jing [景]";
         if (doorDisplay === "驚門") doorDisplay = "Jing [惊]";
 
@@ -35,14 +35,24 @@ app.get('/api/extract-qiju', (req: Request, res: Response) => {
         };
     });
 
-    res.json(extraction);
+    // Extract the exact calendar data n8n needs to prevent AI hallucinations
+    const fullBazi = qimenPan.八字;
+
+    // Output the unified Master Object
+    res.json({
+        calendar_anchor: {
+            date: date.toISOString().split('T')[0],
+            day_stem_chinese: fullBazi[2][0],
+            day_branch_chinese: fullBazi[2][1],
+            full_bazi_array: fullBazi
+        },
+        chart: extraction
+    });
 });
 
 // 2. The Frontend Route (Serves your React UI)
-// This points to the static files Vite generates when Coolify builds the app
 app.use(express.static(path.resolve('./dist')));
 
-// Catch-all to load your web app for any other URL
 app.get('*', (req, res) => {
     res.sendFile(path.resolve('./dist/index.html'));
 });
