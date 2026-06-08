@@ -10,6 +10,8 @@ const port = process.env.PORT || 3000;
 
 // 1. The API Route (EXCLUSIVELY for your n8n AI Agent)
 app.get('/api/extract-qiju', (req: Request, res: Response) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    
     const timeParam = req.query.time as string;
     const date = timeParam ? new Date(timeParam) : new Date();
     
